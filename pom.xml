@@ -1,0 +1,113 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.basil.classreloader</groupId>
+    <artifactId>reloader-agent</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>ClassReloader</name>
+    <description>Class Reloader Agent which can be used to dynamically load code changes without application restart.</description>
+
+	<distributionManagement>
+		<site>
+			<id>Web</id>
+			<name>Website</name>
+			<url>http://www.google.com</url>
+		</site>
+	</distributionManagement>
+
+	<developers>
+		<developer>
+			<id>bjames</id>
+			<name>Basil James</name>
+			<organization>BJ Org</organization>
+			<organizationUrl>http://www.basiljames.co.in</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>0</timezone>
+		</developer>
+	</developers>
+
+	<!-- Contributors -->
+	<contributors>
+		<contributor>
+			<name>Basil James</name>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>0</timezone>
+		</contributor>
+	</contributors>
+
+	<ciManagement>
+		<system>drone.io</system>
+		<url>https://drone.io/github.com/bj-org/filtered-enforce-rule</url>
+		<notifiers>
+			<notifier>
+				<type>mail</type>
+				<sendOnError>true</sendOnError>
+				<sendOnFailure>true</sendOnFailure>
+				<sendOnSuccess>false</sendOnSuccess>
+				<sendOnWarning>false</sendOnWarning>
+				<configuration>
+					<address>continuum@127.0.0.1</address>
+				</configuration>
+			</notifier>
+		</notifiers>
+	</ciManagement>
+
+	<issueManagement>
+		<system>Jira</system>
+		<url>http://jira.codehaus.org/secure/Dashboard.jspa</url>
+	</issueManagement>
+	
+	<scm>
+		<connection>scm:git:git@github.com:bj-org/filtered-enforce-rule.git</connection>
+		<developerConnection>scm:git:git@github.com:bj-org/filtered-enforce-rule.git</developerConnection>
+		<url>git@github.com:bj-org/filtered-enforce-rule.git</url>
+	</scm>
+	
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+        </plugins>
+        <finalName>rcr</finalName>
+    </build>
+</project>
